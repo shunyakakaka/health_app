@@ -1,0 +1,34 @@
+<div class="ui grid">
+  <div class="three column row">
+    <div class="column"></div>
+    <div class="column ui center aligned header"><h2>INFORMATION</h2></div>
+    <div class="column ui right aligned header"><%= link_to "記録", new_board_path, class: "ui blue button ui" %></div>
+  </div>
+</div>
+<div class="ui divider"></div>
+<table class="ui selectable table">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>評価</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @boards.each do |board|%>
+      <tr>
+          <td><%= l(board.created_at)%></td>
+          <td>
+          <% if board.before_weight > board.after_weight%>
+            <p>◯</p>
+          <% elsif board.before_weight == board.after_weight %>
+            <p>-</p>
+          <% else %>
+            <p>×</p>
+          <% end %>
+          </td>
+          <td><%= link_to "詳細", board_path(board.id), class: "ui button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

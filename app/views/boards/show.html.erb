@@ -1,0 +1,81 @@
+<div class="ui grid">
+  <div class="three column row">
+    <div class="column"></div>
+    <div class="column ui center aligned header">
+      <h2>詳細</h2>
+    </div>
+    <div class="column ui right aligned header">
+      <%= link_to "編集", edit_board_path(@board.id), class: "ui button" %>
+      <%= link_to "掲示板一覧", boards_path, class: "ui button" %>
+    </div>
+  </div>
+</div>
+<% if flash[:notice] %>
+  <div class="ui success message ui center aligned header">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="ui grid">
+  <div class="two column row">
+    <div class="column">
+      <h3>前回の体重</h3>
+    </div>
+    <div class="column">
+      <%= @board.before_weight %>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="two column row">
+    <div class="column">
+      <h3>今回の体重</h3>
+    </div>
+    <div class="column">
+      <%= @board.after_weight %>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="two column row">
+    <div class="column">
+      <h3>運動内容</h3>
+    </div>
+    <div class="column">
+      <% @board.tags.each do |tag| %>
+        <p class="ui label"><%= tag.name %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="two column row">
+    <div class="column">
+      <h3>結果</h3>
+    </div>
+    <div class="column">
+      <% result = @board.before_weight.to_f - @board.after_weight.to_f %>
+      <% if result > 0 %>
+        <h3 class="ui blue ">DOWN</h3>
+      <% elsif result == 0 %>
+        <h3>-</h3>
+      <% else %>
+        <h3 class="ui red ">UP</h3>
+      <% end %>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <% nagative_word = ["このままでいいの？", "怠惰ですねぇ", "この豚野郎が！", "ダイエット舐めすぎ。", "痩せなきゃダメでしょ", "痩せたくないの？", "そういう日もあるよね。"] %>
+  <% common_word = ["油断は禁物ですよ？", "現状維持は退化なり。", "体重増えるよりかはマシかな。", "..."]%>
+  <% positive_word = ["痩せたね！", "頑張るあなたは美しい！", "その調子だよ！", "そのまま頑張れ！", "おめでとう！", "すごいね！"]%>
+  <div class="two column row">
+    <div class="column">
+      <h3>一言<h3>
+    </div>
+    <div class="column">
+      <% if result > 0 %>
+        <p><%= positive_word.sample %></p>
+      <% elsif result == 0 %>
+        <p><%= common_word.sample %></p>
+      <% else %>
+        <p><%= nagative_word.sample %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
