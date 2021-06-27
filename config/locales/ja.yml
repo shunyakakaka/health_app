@@ -3,10 +3,15 @@ ja:
   activerecord:
     models:
       board:
+      user:
     attributes:
       board:
         before_weight: 前回の体重
         after_weight: 今日の体重
+      user:
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワード（確認）
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

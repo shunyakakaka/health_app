@@ -1,0 +1,29 @@
+<div class="ui grid">
+  <div class="three column row">
+    <div class="column"></div>
+    <div class="column">
+      <h2 class="ui center aligned header">詳細</h2>
+    </div>
+    <div class="column ui right aligned header">
+      <%= link_to "編集", edit_user_path, class: "ui button" %>
+      <%= link_to "ユーザー一覧", users_path, class: "ui button" %>
+    </div>
+  </div>
+</div>
+<div class="ui divider"></div>
+<div class="ui grid">
+  <div class="two column row">
+    <div class="column"><h4>名前</h4></div>
+    <div class="column"><%= @user.name %></div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="two column row">
+    <div class="column"><h4>登録日時</h4></div>
+    <div class="column"><%= @user.created_at%></div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="two column row">
+    <div class="column"><h4>更新日時</h4></div>
+    <div class="column"><%= @user.updated_at %></div>
+  </div>
+</div>

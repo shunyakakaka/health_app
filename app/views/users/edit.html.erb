@@ -1,0 +1,30 @@
+<div class="ui grid">
+  <div class="three column row">
+    <div class="column"></div>
+    <div class="column ui center aligned header"><h2>編集</h2></div>
+    <div class="column ui right aligned header">
+      <%= link_to "ユーザー一覧", users_path, class: "ui button" %>
+    </div>
+  </div>
+</div>
+<div class="ui divider"></div>
+<div class="ui form">
+  <div class="three field">
+    <%= form_with model: @user, method: :post do |f|%>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password%>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <%= f.submit "登録", class: "ui blue button" %>
+    <% end %>
+  </div>
+  <%= link_to "アカウント削除", user_path(@user.id),method: :delete,  class: "ui red button" %>
+</div>
