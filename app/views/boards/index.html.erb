@@ -1,6 +1,19 @@
+<% if flash[:notice] %>
+  <div class="ui success message ui center aligned header">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <div class="ui grid">
   <div class="three column row">
-    <div class="column"></div>
+    <div class="column">
+      <% if current_user %>
+        <p>やっはろー</p>
+        <%= link_to "ログアウト", logout_path, method: :delete, class: "ui button" %>
+      <% else %>
+        <p>こんにちは</p>
+        <%= link_to "ログイン", login_path, class: "ui button" %>
+      <% end %>
+    </div>
     <div class="column ui center aligned header"><h2>INFORMATION</h2></div>
     <div class="column ui right aligned header"><%= link_to "記録", new_board_path, class: "ui blue button ui" %></div>
   </div>

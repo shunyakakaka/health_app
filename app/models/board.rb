@@ -2,6 +2,7 @@ class Board < ApplicationRecord
 
   has_many :board_tag_relations, dependent: :delete_all
   has_many :tags, through: :board_tag_relations
+  belongs_to :user
   
   validates :before_weight, presence: true
   validate :comma_check_before_weight

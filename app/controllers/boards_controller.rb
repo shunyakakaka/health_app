@@ -1,45 +1,45 @@
 class BoardsController < ApplicationController
 
   def index
-    @boards = Board.all
+    @boards = current_user.boards
   end
 
   def new
-    if Board.last == nil
-      @board = Board.new
+    if current_user.boards.last == nil
+      @board = current_user.boards.new()
     else
-      @board = Board.new(before_weight: Board.last.after_weight)
+      @board = current_user.boards.new(before_weight: current_user.boards.last.after_weight)
       if flash[:board]
-        @board = Board.new(flash[:board])
+        @board = current_user.boards.new(flash[:board])
       end
     end
   end
 
   def create
-    board = Board.new(board_params)
-    if Board.last == nil 
-      board.before_weight = board.after_weight
+    @board = current_user.boards.new(board_params)
+    if current_user.boards.last.before_weight == nil 
+      @board.before_weight = @board.after_weight
     end
-    if board.save
+    if @board.save
       flash[:notice] = "記録しました。"
-      redirect_to board_path(board.id)
+      redirect_to board_path(@board.id)
     else
-      flash[:board] = board
-      flash[:error_message] =  board.errors.full_messages
+      flash[:board] = @board
+      flash[:error_message] =  @board.errors.full_messages
       redirect_to new_board_path
     end
   end
 
   def show
-    @board = Board.find(params[:id])
+    @board = current_user.boards.find(params[:id])
   end
 
   def edit
-    @board = Board.find(params[:id])
+    @board = current_user.boards.find(params[:id])
   end
 
   def update
-    board = Board.find(params[:id])
+    board = current_user.boards.find(params[:id])
     if board.update(board_params)
       flash[:notice] = "編集しました"
       redirect_to board_path(board.id)

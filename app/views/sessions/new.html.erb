@@ -1,0 +1,21 @@
+<%= link_to "ユーザー登録", new_user_path, class: "ui blue button" %>
+<div class="ui grid">
+  <div class="column ui center aligned header"><h2>ログインしとく？</h2></div>
+</div>
+<div class="divider"></div>
+<div class="ui form">
+  <div class="two field">
+    <%= form_with scope: :session, url: login_path, method: :post do |f| %>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <%= f.submit "ログイン", class:"ui blue button"%>
+    <% end %>
+  </div>
+</div>
