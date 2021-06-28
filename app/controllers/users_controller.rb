@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
   skip_before_action :login_required
-  def index
-    @users = User.all 
-  end
 
   def show
     @user = User.find(params[:id])
@@ -29,7 +26,7 @@ class UsersController < ApplicationController
     flash[:notice] = "「#{user.name}」が削除されました」"
     user = User.destroy(params[:id])
     
-    redirect_to users_path
+    redirect_to root_path
   end
   
   def edit
@@ -39,6 +36,7 @@ class UsersController < ApplicationController
   def update
     @user = User.new(user_params)
     @user.update
+    flash[:notice] = "編集しました"
     redirect_to user_path(@user.id)
   end
 

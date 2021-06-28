@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div class="ui success message ui center aligned header">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <div class="ui grid">
   <div class="column ui center aligned header"><h2>ログイン画面</h2></div>
 </div>

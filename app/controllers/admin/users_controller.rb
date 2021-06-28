@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :require_admin
-  
+
   def index
     @users = User.all 
   end
@@ -16,21 +16,19 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "ユーザー「#{@user.name}」でログインしました"
-      session[:user_id] = @user.id
-      redirect_to boards_path
+      flash[:notice] = "ユーザー「#{@user.name}」を登録しました"
+      redirect_to admin_users_path
     else
-      redirect_to new_user_path
+      redirect_to admin_new_user_path
     end
   end
 
   def destroy
     user = User.find(params[:id])
-    current_user.boards.destroy
     flash[:notice] = "「#{user.name}」が削除されました」"
     user = User.destroy(params[:id])
     
-    redirect_to users_path
+    redirect_to admin_users_path
   end
   
   def edit
@@ -38,9 +36,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user = User.new(user_params)
-    @user.update
-    redirect_to user_path(@user.id)
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "編集しました"
+    redirect_to admin_user_path(@user.id)
   end
 
   private

@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div class="ui success message ui center aligned header">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <div class="ui grid">
   <div class="three column row">
     <div class="column"></div>
@@ -5,8 +10,8 @@
       <h2 class="ui center aligned header">詳細</h2>
     </div>
     <div class="column ui right aligned header">
-      <%= link_to "編集", edit_user_path, class: "ui button" %>
-      <%= link_to "ユーザー一覧", users_path, class: "ui button" %>
+      <%= link_to "編集", edit_admin_user_path, class: "ui button" %>
+      <%= link_to "ユーザー一覧", admin_users_path, class: "ui button" %>
     </div>
   </div>
 </div>

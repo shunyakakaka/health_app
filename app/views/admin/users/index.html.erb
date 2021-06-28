@@ -1,5 +1,10 @@
+<% if current_user.admin? %>
+  <p>あなたは権限者です</p>
+<% end %>
 <% if flash[:notice] %>
-  <%= flash[:notice] %>
+  <div class="ui success message ui center aligned header">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
 <div class="ui grid">
   <div class="three column row">
@@ -11,7 +16,7 @@
     </div>
     <div class="column">
       <div class="ui right aligned header">
-        <%= link_to "新規登録", new_user_path, class: "ui blue button" %>
+        <%= link_to "新規登録", new_admin_user_path, class: "ui blue button" %>
       </div>
     </div>
   </div>
@@ -30,7 +35,7 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.created_at %></td>
-        <td><%= link_to "詳細", user_path(user.id), class: "ui button" %></td>
+        <td><%= link_to "詳細", admin_user_path(user.id), class: "ui button" %></td>
       </tr>
     <% end %>
   </tbody>
