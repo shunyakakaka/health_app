@@ -21,7 +21,7 @@
       <h3>前回の体重</h3>
     </div>
     <div class="column">
-      <% if current_user.boards.first %>
+      <% if @board.id == current_user.boards.first.id%>
         <p>-</p>
       <% else %>
         <%= @board.before_weight %>

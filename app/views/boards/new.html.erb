@@ -40,7 +40,7 @@
       第三引数はチェックボックスのvalueの値を指定している。tagオブジェクトの個々のidが入る
       第四引数は各チェックボックスのラベル名としてTagオブジェクトのnameプロパティが入る
        %>
-        <p>運動内容</p>
+        <p>運動内容(複数選択可)</p>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
           <div class="field">
             <%= tag.label do %>
