@@ -1,6 +1,7 @@
-body {
-  margin-top: 30px;
+.ui.container {
+  margin: 30px 0 50px 0;
 }
+
 .ui.divider {
   margin: 40px 0;
 }
@@ -10,4 +11,17 @@ body {
 }
 .ui.red {
   color:  red;
+}
+
+.ui.grid.header_nav {
+  background-color: rgba(0, 0, 0, 0.397);
+  margin-bottom: 30px;
+}
+
+.header_title {
+  text-justify: auto;
+  color: white;
+  p {
+    font-size: 25px;
+  }
 }

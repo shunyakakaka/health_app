@@ -1,29 +1,14 @@
-<% if flash[:notice] %>
-  <div class="ui success message ui center aligned header">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-<%= current_user.name %>
+<%= render partial: "shared/success_messages" %>
 <div class="ui grid">
   <div class="three column row">
-    <div class="column">
-      <% if current_user %>
-        <%= link_to "ログアウト", logout_path, method: :delete, class: "ui button" %>
-        <% if current_user.admin? %>
-          <%= link_to "ユーザー一覧", admin_users_path, class: "ui button" %>
-        <% else %>
-          <%= link_to "#{current_user.name}さんの詳細", user_path(current_user.id), class: "ui button" %>
-        <% end %>
-      <% else %>
-        <p>こんにちは</p>
-        <%= link_to "ログイン", login_path, class: "ui button" %>
-      <% end %>
-    </div>
-    <div class="column ui center aligned header"><h2>INFORMATION</h2></div>
-    <div class="column ui right aligned header"><%= link_to "記録", new_board_path, class: "ui blue button ui" %></div>
+    <div class="column"></div>
+    <div class="column ui center aligned header"><h2>掲示板一覧</h2></div>
+    <div class="column ui right aligned header"><%= link_to "記録", new_board_path, class: "ui blue button" %></div>
   </div>
 </div>
+
 <div class="ui divider"></div>
+
 <table class="ui selectable table">
   <thead>
     <tr>
@@ -50,3 +35,5 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="ui divider"></div>

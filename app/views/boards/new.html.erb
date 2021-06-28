@@ -2,57 +2,9 @@
   <div class="three column row">
     <div class="column"></div>
     <div class="column ui center aligned header"><h2>入力</h2></div>
-    <div class="column ui right aligned header">
-
-    <%= link_to "掲示板一覧", boards_path, class: "ui button"%></div>
+    <div class="column"></div>
   </div>
 </div>
 <div class="ui divider"></div>
-<% if flash[:error_message] %>
-  <div class="ui center aligned header">
-    <div class="ui negative message">
-      <% flash[:error_message].each do |msg| %>
-        <ul>
-          <li><%= msg %></li>
-        </ul>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-<div class="ui form">
-<%# fにはmodelオブジェクトのプロパティが入る.勝手に対応づけしてくれる %>
-  <%= form_with model: @board, url: boards_path,local: true do |f|%>
-    <div class="three fields">
-      <% if @board.before_weight == nil%>
-      <% else %>
-        <div class="field">
-          <%= f.label :before_weight %>
-          <%= f.text_field :before_weight %>
-        </div>
-      <% end %>
-      <div class="field">
-        <%= f.label :after_weight %>
-        <%= f.text_field :after_weight %>
-      </div>
-      <div class="field">
-      <%# 第一引数はtagオブジェクトと関連づけるboardオブジェクトのプロパティ名を指定している。
-      第二引数はtagオブジェクトのリストを取得して渡している。
-      第三引数はチェックボックスのvalueの値を指定している。tagオブジェクトの個々のidが入る
-      第四引数は各チェックボックスのラベル名としてTagオブジェクトのnameプロパティが入る
-       %>
-        <p>運動内容(複数選択可)</p>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-          <div class="field">
-            <%= tag.label do %>
-              <%= tag.check_box class: "checkbox"%>
-              <%= tag.text %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="ui center aligned header">
-        <%= f.submit "記録", class: "ui blue button" %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render partial: "shared/error_messages" %>
+<%= render partial: "form", locals: {board: @board} %>

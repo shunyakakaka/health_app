@@ -1,24 +1,14 @@
-<% if current_user.admin? %>
-  <p>あなたは権限者です</p>
-<% end %>
 <% if flash[:notice] %>
   <div class="ui success message ui center aligned header">
     <%= flash[:notice] %>
   </div>
 <% end %>
-<div class="ui grid">
+
+<div class="ui grid" style="height: 64px;">
   <div class="three column row">
     <div class="column"></div>
-    <div class="column">
-      <div class="ui center aligned header">
-        <h2>ユーザー一覧<h2>
-      </div>
-    </div>
-    <div class="column">
-      <div class="ui right aligned header">
-        <%= link_to "新規登録", new_admin_user_path, class: "ui blue button" %>
-      </div>
-    </div>
+    <div class="column ui center aligned header"><h2>ユーザー一覧<h2></div>
+    <div class="column ui right aligned header"><%= link_to "新規登録", new_admin_user_path, class: "ui blue button" %></div>
   </div>
 </div>
 <div class="ui divider"></div>
@@ -28,15 +18,22 @@
       <th>ユーザー名</th>
       <th>登録日時</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user|%>
       <tr>
         <td><%= user.name %></td>
-        <td><%= user.created_at %></td>
+        <td><%= l(user.created_at) %></td>
+        <% if user.admin? %>
+          <td>管理者</td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= link_to "詳細", admin_user_path(user.id), class: "ui button" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div class="ui divider"></div>

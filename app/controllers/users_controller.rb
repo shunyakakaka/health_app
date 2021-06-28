@@ -30,17 +30,6 @@ class UsersController < ApplicationController
     
     redirect_to root_path
   end
-  
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.new(user_params)
-    @user.update
-    flash[:notice] = "編集しました"
-    redirect_to user_path(@user.id)
-  end
 
   private
 

@@ -1,17 +1,16 @@
-<% if flash[:notice] %>
-  <div class="ui success message ui center aligned header">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-<div class="ui grid">
-  <div class="column ui center aligned header"><h2>ログイン画面</h2></div>
-</div>
+<%= render partial: "shared/success_messages" %>
 <% if flash[:error_message] %>
-  <div class="ui error message ui center aligned header">
+  <div class="ui negative message ui center aligned header">
     <%= flash[:error_message] %>
   </div>
 <% end %>
+
+<div class="ui grid">
+  <div class="column ui center aligned header"><h2>ログイン画面</h2></div>
+</div>
+
 <div class="divider"></div>
+
 <div class="ui form">
   <div class="two field">
     <%= form_with model: nil, scope: :session, url: login_path, method: :post do |f| %>

@@ -1,0 +1,11 @@
+<% if flash[:error_message] %>
+  <div class="ui center aligned header">
+    <div class="ui negative message">
+      <% flash[:error_message].each do |msg| %>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>

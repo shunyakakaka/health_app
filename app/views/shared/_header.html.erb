@@ -1,0 +1,28 @@
+<div class="ui container">
+  <div class="ui grid header_nav">
+    <div class="two column row">
+      <div class="column header_title">
+        <p>Weight Management App</p>
+      </div>
+      <div class="column">
+        <% if current_user == nil %>
+          <% return %>
+        <% end %>
+        <% if current_user.admin? %>
+          <div class="ui four item menu">
+            <%= link_to "掲示板一覧", boards_path, class: "ui button item"%>
+            <%= link_to "ユーザー一覧", admin_users_path, class: "ui button item"%>
+            <%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: "ログアウトしますか？"}, class: "ui button item"%>
+            </div>
+          </div>
+        <% else %>
+          <div class="ui three item menu">
+            <%= link_to "掲示板一覧", boards_path, class: "ui button item"%>
+            <%= link_to "ユーザー情報", user_path(current_user), class: "ui button item"%>
+            <%= link_to "ログアウト", logout_path, method: :delete, data: {confirm: "ログアウトしますか？"}, class: "ui button item"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

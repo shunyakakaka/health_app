@@ -1,3 +1,5 @@
+<%= render partial: "shared/success_messages" %>
+
 <div class="ui grid">
   <div class="three column row">
     <div class="column"></div>
@@ -6,15 +8,12 @@
     </div>
     <div class="column ui right aligned header">
       <%= link_to "編集", edit_board_path(@board.id), class: "ui button" %>
-      <%= link_to "掲示板一覧", boards_path, class: "ui button" %>
     </div>
   </div>
 </div>
-<% if flash[:notice] %>
-  <div class="ui success message ui center aligned header">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+
+<div class="ui divider"></div>
+
 <div class="ui grid">
   <div class="two column row">
     <div class="column">

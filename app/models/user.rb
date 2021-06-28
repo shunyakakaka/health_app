@@ -3,7 +3,7 @@ class User < ApplicationRecord
   
   has_secure_password
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: {maximum: 10}
 
   VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,30}\z/
   validates :password, presence: true,

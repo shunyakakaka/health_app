@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
 
   def new
     if current_user.boards.last == nil
-      @board = current_user.boards.new()
+      @board = current_user.boards.new
     else
       @board = current_user.boards.new(before_weight: current_user.boards.last.after_weight)
       if flash[:board]
@@ -24,9 +24,17 @@ class BoardsController < ApplicationController
       flash[:notice] = "記録しました。"
       redirect_to board_path(@board.id)
     else
-      flash[:board] = @board
-      flash[:error_message] =  @board.errors.full_messages
-      redirect_to new_board_path
+      if @board.before_weight == ""
+        board = Board.find(Board.ids.length)
+        @board.before_weight = board.after_weight
+        flash[:board] = @board
+        flash[:error_message] =  @board.errors.full_messages
+        redirect_to new_board_path
+      else
+        flash[:board] = @board
+        flash[:error_message] =  @board.errors.full_messages
+        redirect_to new_board_path
+      end
     end
   end
 
@@ -54,4 +62,5 @@ class BoardsController < ApplicationController
   def board_params
     params.require(:board).permit(:before_weight, :after_weight, tag_ids: [])
   end
+
 end
