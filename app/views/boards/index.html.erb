@@ -7,8 +7,10 @@
   <div class="three column row">
     <div class="column">
       <% if current_user %>
-        <p>やっはろー</p>
         <%= link_to "ログアウト", logout_path, method: :delete, class: "ui button" %>
+        <% if current_user.admin? %>
+          <%= link_to "ユーザー一覧", users_path, class: "ui button" %>
+        <% end %>
       <% else %>
         <p>こんにちは</p>
         <%= link_to "ログイン", login_path, class: "ui button" %>

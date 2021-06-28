@@ -1,6 +1,5 @@
-<%= link_to "ユーザー登録", new_user_path, class: "ui blue button" %>
 <div class="ui grid">
-  <div class="column ui center aligned header"><h2>ログインしとく？</h2></div>
+  <div class="column ui center aligned header"><h2>ログイン画面</h2></div>
 </div>
 <div class="divider"></div>
 <div class="ui form">
@@ -14,8 +13,8 @@
         <%= f.label :password %>
         <%= f.password_field :password %>
       </div>
-
       <%= f.submit "ログイン", class:"ui blue button"%>
+      <%= link_to "ユーザー登録", new_user_path, class: "ui blue button" %>
     <% end %>
   </div>
 </div>

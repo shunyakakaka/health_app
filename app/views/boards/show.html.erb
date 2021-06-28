@@ -21,7 +21,11 @@
       <h3>前回の体重</h3>
     </div>
     <div class="column">
-      <%= @board.before_weight %>
+      <% if current_user.boards.first %>
+        <p>-</p>
+      <% else %>
+        <%= @board.before_weight %>
+      <% end %>
     </div>
   </div>
   <div class="ui divider"></div>
@@ -61,6 +65,7 @@
     </div>
   </div>
   <div class="ui divider"></div>
+  <% first_word = "今日から頑張りましょう！"%>
   <% nagative_word = ["このままでいいの？", "怠惰ですねぇ", "この豚野郎が！", "ダイエット舐めすぎ。", "痩せなきゃダメでしょ", "痩せたくないの？", "そういう日もあるよね。"] %>
   <% common_word = ["油断は禁物ですよ？", "現状維持は退化なり。", "体重増えるよりかはマシかな。", "..."]%>
   <% positive_word = ["痩せたね！", "頑張るあなたは美しい！", "その調子だよ！", "そのまま頑張れ！", "おめでとう！", "すごいね！"]%>
@@ -69,7 +74,9 @@
       <h3>一言<h3>
     </div>
     <div class="column">
-      <% if result > 0 %>
+      <% if current_user.boards.length == 1 %>
+        <%= first_word %>
+      <% elsif result > 0 %>
         <p><%= positive_word.sample %></p>
       <% elsif result == 0 %>
         <p><%= common_word.sample %></p>
